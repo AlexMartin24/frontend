@@ -1,0 +1,90 @@
+/* Estilos para la sección de Sectores */
+.sectores-container {
+  display: block;
+  margin-top: 20px;
+}
+
+/* Estilos para el botón "Ver Sectores" */
+.accordion-button {
+  background-color: #007BFF;
+  color: white;
+  padding: 10px 20px;
+  border: none;
+  text-align: left;
+}
+
+.accordion-button:focus {
+  box-shadow: none;
+}
+
+/* Estilos para el contenido de los sectores */
+.accordion-body {
+  padding: 10px;
+}
+
+/* Estilos para los elementos de la lista de sectores */
+.accordion-body a {
+  /* display: block; */
+
+  display: contents;
+  margin-bottom: 5px;
+  text-decoration: none;
+  color: #000102;
+}
+
+.accordion-body a:hover {
+  text-decoration: underline;
+}
+
+
+
+/* Estilos para la tarjeta (card) */
+.card {
+  /* Estilos generales para la tarjeta */
+  border: 1px solid #ccc;
+  padding: 10px;
+  margin: 10px 0;
+}
+
+/* Estilos para los detalles (detail) */
+.detail {
+  /* Estilos para cada detalle */
+  margin-bottom: 5px;
+}
+
+/* Estilos para los botones */
+.btn {
+  /* Estilos generales para los botones */
+  margin-right: 5px;
+}
+
+/* Estilos para la tabla */
+.table {
+  /* Estilos generales para la tabla */
+  width: 100%;
+  border-collapse: collapse;
+}
+
+/* Estilos para las celdas de la tabla */
+.table th, .table td {
+  border: 1px solid #ccc;
+  padding: 8px;
+}
+
+
+/* Estilos para los elementos de la lista de sectores */
+.sectores-list a {
+  /* Estilos para cada elemento de la lista de sectores */
+  display: block;
+  margin-bottom: 5px;
+  text-decoration: none;
+  color: #fff;
+  background-color: #007BFF;
+  padding: 8px;
+  border-radius: 4px;
+}
+
+/* Estilos para los elementos activos de la lista de sectores */
+.sectores-list a.active {
+  background-color: #0056b3;
+}

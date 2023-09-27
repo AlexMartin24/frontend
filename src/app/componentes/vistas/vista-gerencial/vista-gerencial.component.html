@@ -1,0 +1,98 @@
+<app-nav-bar></app-nav-bar>
+
+<div class="card container-fluid" id="vista-tecnico">
+    <div class="container">
+        <div class="card-header row">
+            <div class="h3 col-11">Bienvenido</div>
+            <div class="h5 col-11" *ngIf="usuario">
+                <a [routerLink]="'/usuario/' + usuario.idUsuario">
+                    {{ usuario.nombre }} {{ usuario.apellido }} - {{ usuario.rol.nombre}}
+                </a>
+            </div>
+        </div>
+        <br>
+
+
+        <!-- Campos para elegir las fechas y el botón de consultas -->
+        <div class="card">
+            <div class="card-body">
+                <h5>Consultar Incidentes</h5>
+                <div class="row">
+                    <div class="col-md-6">
+                        <label for="fechaInicio">Fecha de Inicio: </label>
+                        <input type="date" id="fechaInicio" [(ngModel)]="fechaInicio">
+                    </div>
+                    <div class="col-md-6">
+                        <label for="fechaFinalizacion">Fecha de Finalización: </label>
+                        <input type="date" id="fechaFinalizacion" [(ngModel)]="fechaFinalizacion">
+                    </div>
+                    <!-- Botón de consultas -->
+                    <div class="consultar">
+                        <div class="col-md-12">
+                            <button (click)="consultarEstadisticasIncidentes()">Consultar</button>
+                        </div>
+                    </div>
+                </div>
+
+                <table class="table table-striped table-fixed-width" *ngIf="estadisticasPorFecha">
+                    <thead>
+                        <tr>
+                            <th scope="col">Incidentes Generados</th>
+                            <th scope="col">Incidentes Solucionados</th>
+                            <th scope="col">Incidentes Abiertos</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>{{ estadisticasPorFecha.totalIncidentes }}</td>
+                            <td>{{ estadisticasPorFecha.incidentesSolucionados }}</td>
+                            <td>{{ estadisticasPorFecha.incidentesAbiertos }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+
+        <br><br>
+        <!-- Establecimiento con mas incidencias -->
+        <div class="card">
+            <div class="card-body">
+                <h5>Establecimientos Con Más Incidencias</h5>
+                <div class="col-md-4" *ngFor="let establecimiento of listaEstablecimiento; let i = index">
+                    <span class="float-right">{{ i + 1 }}° - {{ establecimiento.nombre }}</span>
+                    <div class="progress mb-4">
+                        
+                        <div class="progress-bar" role="progressbar"
+                            [style.width]="(establecimiento.totalIncidentes / listaEstablecimiento[0].totalIncidentes) * 100 + '%'"
+                            [attr.aria-valuenow]="establecimiento.totalIncidentes">
+                            {{ establecimiento.totalIncidentes }}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <br><br>
+
+        <div class="card">
+            <div class="card-body">
+                <h5>Establecimientos Con Más Incidencias</h5>
+                <div class="row">
+                    <div class="col-md-4" *ngFor="let establecimiento of listaEstablecimiento">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ establecimiento.nombre }}</h5>
+                                <p class="card-text">Total de Incidencias: {{ establecimiento.totalIncidentes }}</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+    </div>
+    <br><br>
+</div>
+<app-pie></app-pie>

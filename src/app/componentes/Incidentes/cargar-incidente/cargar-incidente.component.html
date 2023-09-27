@@ -1,0 +1,134 @@
+<app-nav-bar></app-nav-bar>
+
+<!-- <div class="container-fluid border"> -->
+<div class="card container-fluid">
+    <div class="container">
+        <div class="card-header lg-center row">
+            <label class="h2 col-10" for="">Cargar Incidente</label>
+            <div class="col-2">
+                <a class="btn btn-secondary" [routerLink]="['/']">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                        class="bi bi-arrow-left-circle" viewBox="0 0 16 16">
+                        <path fill-rule="evenodd"
+                            d="M1 8a7 7 0 1 0 14 0A7 7 0 0 0 1 8zm15 0A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-4.5-.5a.5.5 0 0 1 0 1H5.707l2.147 2.146a.5.5 0 0 1-.708.708l-3-3a.5.5 0 0 1 0-.708l3-3a.5.5 0 1 1 .708.708L5.707 7.5H11.5z" />
+                    </svg>
+                    <!-- Atras -->
+                </a>
+            </div>
+        </div>
+        <div class="contenedor-hijo scroll">
+            <form [formGroup]="incidenteForm" class="row" (ngSubmit)="onSubmit()">
+
+
+
+                <div class="datosEstablecimiento">
+
+                    <div class="centrar mb-3 col-5">
+                        <label class="label">Establecimiento</label>
+                        <input type="text" class="form-control" formControlName="establecimiento" (input)="filterEstablecimientos($event)">
+                        <ul class="list-group" *ngIf="filteredEstablecimientos.length > 0">
+                            <li class="list-group-item" *ngFor="let establecimiento of filteredEstablecimientos" (click)="selectEstablecimiento(establecimiento)">
+                                {{ establecimiento.nombre }}
+                            </li>
+                        </ul>
+                    </div>
+
+                    <!-- <div class="centrar mb-3 col-5">
+                        <label class="label">Sectores Seleccionados:</label>
+                        <input type="text" class="form-control" [value]="getSelectedSectores()" readonly>
+                    </div> -->
+                                        
+                    
+                    <!-- <div class="centrar mb-3 col-5">
+                        <label class="label">Sector:</label>
+                        <ng-autocomplete class="" formControlName="sector" [data]="sectores"
+                            [searchKeyword]="keywordSector" placeholder="Seleccionar Sector"
+                            [itemTemplate]="itemTemplateSector" [notFoundTemplate]="notFoundTemplateSector"
+                            (selected)="onSectorSelect($event)">
+                        </ng-autocomplete>
+
+                        <ng-template #itemTemplateSector let-sector>
+                            <a>
+                                <span [innerHTML]="sector.nombreSector"></span>
+                            </a>
+                        </ng-template>
+
+                        <ng-template #notFoundTemplateSector let-notFound>
+                            <div [innerHTML]="notFound"></div>
+                        </ng-template>
+                    </div> -->
+                </div>
+
+                <div class="datosIncidentes">
+
+                    <div class="centrar mb-3 col-5">
+                        <div class="mb-3 ">
+                            <label class="label">Prioridad:</label>
+                            <select class="form-select" id="Prioridad" formControlName="idPrioridad">
+                                <option value="">Selecciones Prioridad</option>
+                                <option [value]="prioridad.idPrioridad" *ngFor="let prioridad of prioridades">
+                                    {{prioridad.descripcion}} </option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="centrar mb-3 col-5">
+                        <div class="mb-3">
+                            <label class="label">Categoria:</label>
+                            <select class="form-select" id="Categoria" formControlName="idCategoria">
+                                <option value="">Seleccione Categoria</option>
+                                <option [value]="categoria.idCategoria" *ngFor="let categoria of categorias">
+                                    {{categoria.descripcion}} </option>
+                            </select>
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="datosIncidentes">
+                    <div class="centrar mb-3 col-5 row">
+                        <label for="equiposAfectados">Equipos afectados:</label>
+                        <select id="equiposAfectados" multiple formControlName="equipos" #equiposSelect>
+                            <option *ngFor="let equipo of equipos" [value]="{idEquipo: equipo.idEquipo}">{{
+                                equipo.nombre }}</option>
+                        </select>
+                    </div>
+
+                    <div class="centrar mb-3 col-5 row">
+                        <label for="usuario">Seleccionar Usuarios:</label>
+                        <select id="usuario" multiple formControlName="usuario" #usuarioSelect>
+                            <option *ngFor="let usuario of usuarios" [value]="{idEquipo: usuario.idUsuario}">
+                                {{ usuario.nombre }}</option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="centrar mb-5 col-11">
+                    <div class="form-group col-12">
+                        <br>
+                        <label for="tarea">Tarea</label>
+                        <input required type="text" class="form-control" id="tarea" formControlName="tarea"
+                            placeholder="Escribir Titulo de la tarea">
+                    </div>
+                    <br>
+
+                    <label class="label">Descripcion: </label>
+                    <textarea class="form-control" id="textarea" formControlName="descripcion"
+                        placeholder="Introducir una breve descripcion"></textarea>
+
+                </div>
+
+                <div class="centrar mb-1 col-3">
+                    <div class="form-group">
+                        <button type="submit" role="group" aria-label="Button group name" class="btn btn-success"
+                            [disabled]="incidenteForm.invalid">Cargar</button> |
+                        <a class="btn btn-danger" [routerLink]="['/listar-incidentes']">Cancelar</a>
+                    </div>
+                </div>
+
+            </form>
+            <br>
+        </div>
+    </div>
+</div>
+<app-pie></app-pie>

@@ -1,0 +1,21 @@
+
+.container-fluid {
+    width: 97%;
+    margin-bottom: 1rem;
+    margin-top: 1rem;
+    padding: 0.5rem;
+}
+.form-floating{
+    padding: 0.1rem;
+}
+.select-label{
+    padding-bottom: 1rem;
+}
+.error{
+    display: flex;
+    justify-content: center;
+}
+textarea{
+    height: 90%;
+    width: 50%;
+}
